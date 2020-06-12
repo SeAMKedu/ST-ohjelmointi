@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4023.119">
+	<Project ProjectGUID="{BD4CF0E4-0FF9-46B6-8BE4-1841D45FE95D}" Target64Bit="true" ShowHideConfigurations="#x106">
+		<System>
+			<Tasks>
+				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
+					<Name>PlcTask</Name>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project GUID="{F1E8F7B5-5521-494A-BBF6-9CD2C2A0635B}" Name="MoottoriSylinteri" PrjFilePath="MoottoriSylinteri\MoottoriSylinteri.plcproj" TmcFilePath="MoottoriSylinteri\MoottoriSylinteri.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MoottoriSylinteri\MoottoriSylinteri.tmc">
+					<Name>MoottoriSylinteri Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.iCyl1minus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iCyl1plus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iMot1running</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iCyl2minus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iCyl2plus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iMot2running</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iCyl3minus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iCyl3plus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iMot3running</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iCyl4minus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iCyl4plus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.iMot4running</Name>
+							<Type>BIT</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>MAIN.qCyl1toMinus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qCyl1toPlus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qMot1start</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qCyl2toMinus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qCyl2toPlus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qMot2start</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qCyl3toMinus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qCyl3toPlus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qMot3start</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qCyl4toMinus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qCyl4toPlus</Name>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.qMot4start</Name>
+							<Type>BIT</Type>
+						</Var>
+					</Vars>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
+		</Plc>
+	</Project>
+</TcSmProject>

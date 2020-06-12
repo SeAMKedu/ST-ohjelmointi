@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <POU Name="MAIN" Id="{4443c741-912a-415d-9030-3f0aa6bbb37c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	start : BOOL;
+	stop : BOOL;
+	lamppu : BOOL;
+	ton3: TON;
+	step : INT;
+END_VAR
+
+VAR_INPUT
+	iCyl1minus AT %IX0.0: BOOL;
+	iCyl1plus AT %IX0.1: BOOL;
+	iCyl2minus AT %IX0.3: BOOL;
+	iCyl2plus AT %IX0.4: BOOL;
+	iCyl3minus AT %IX1.0: BOOL;
+	iCyl3plus AT %IX1.1: BOOL;
+	iCyl4minus AT %IX1.3: BOOL;
+	iCyl4plus AT %IX1.4: BOOL;
+	iMot1running AT %IX0.2: BOOL;
+	iMot2running AT %IX0.5: BOOL;
+	iMot3running AT %IX1.2: BOOL;
+	iMot4running AT %IX1.5: BOOL;
+END_VAR
+
+VAR_OUTPUT
+	qCyl1toMinus AT %QX0.0: BOOL;
+	qCyl1toPlus AT %QX0.1: BOOL;
+	qCyl2toMinus AT %QX0.3: BOOL;
+	qCyl2toPlus AT %QX0.4: BOOL;
+	qCyl3toMinus AT %QX1.0: BOOL;
+	qCyl3toPlus AT %QX1.1: BOOL;
+	qCyl4toMinus AT %QX1.3: BOOL;
+	qCyl4toPlus AT %QX1.4: BOOL;
+	qMot1start AT %QX0.2: BOOL;
+	qMot2start AT %QX0.5: BOOL;
+	qMot3start AT %QX1.2: BOOL;
+	qMot4start AT %QX1.5: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// nollataan lähdöt joka kierroksen alussa
+qMot1start := FALSE;
+qCyl1toMinus := FALSE;
+qCyl1toPlus := FALSE;
+lamppu := FALSE;
+
+IF stop THEN
+	step := 0;
+END_IF
+
+CASE step OF
+	0: // odotus
+		IF start AND NOT iMot1running AND iCyl1minus THEN
+			step := 10;
+		END_IF
+	
+	10: // moottori käynnistyy
+		qMot1start := TRUE;
+		IF iMot1running THEN
+			step := 20;
+		END_IF
+	20: // sylinteri oikealle
+		qMot1start := TRUE;
+		qCyl1toPlus := TRUE;
+		IF iCyl1plus THEN
+			step := 30;
+		END_IF
+	30: // sylinteri vasemmalle
+		qMot1start := TRUE;
+		qCyl1toMinus := TRUE;
+		IF iCyl1minus THEN
+			step := 40;
+		END_IF
+	40: // moottori sammuu
+		IF NOT iMot1running THEN
+			step := 50;
+		END_IF
+	50: lamppu := TRUE;
+	
+END_CASE
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="5" Count="0" />
+      <LineId Id="50" Count="1" />
+      <LineId Id="53" Count="1" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="57" Count="1" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="72" Count="2" />
+      <LineId Id="63" Count="2" />
+      <LineId Id="75" Count="2" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="78" Count="4" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="83" Count="4" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="88" Count="3" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="52" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
